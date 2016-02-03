@@ -1,7 +1,7 @@
 CROSS_COMPILE =
 CFLAGS = -Os -Wall -fsigned-char -g
 LIBS = -ldl
-QEMU_PLATFORM_ARM = qemu-arm
+QEMU = qemu-arm
 BIN = amacc
 SRC = amacc.c
 
@@ -11,7 +11,7 @@ else
 	CROSS_COMPILE = arm-linux-gnueabi
 endif
 
-CROSS_EXEC = $(QEMU_PLATFORM_ARM) -L /usr/$(CROSS_COMPILE)
+CROSS_EXEC = $(QEMU) -L /usr/$(CROSS_COMPILE)
 
 all: $(BIN)
 
