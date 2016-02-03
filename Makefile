@@ -3,7 +3,7 @@ CFLAGS = -Os -Wall -fsigned-char -g
 LIBS = -ldl
 QEMU = qemu-arm
 BIN = amacc
-SRC = amacc.c
+SRC = $(BIN).c
 
 ifeq ($(PREFIX), arm-linux-gnueabihf-)
 	CROSS_COMPILE = arm-linux-gnueabihf
