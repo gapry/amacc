@@ -13,7 +13,7 @@ endif
 all: $(BIN)
 
 amacc: amacc.c
-	$(CROSS_COMPILER_PREFIX)-gcc $(CFLAGS) -o amacc amacc.c $(LIBS)
+	$(CROSS_COMPILER_PREFIX)-gcc $(CFLAGS) -o $(BIN) amacc.c $(LIBS)
 
 check: $(BIN)
 	@echo "[ compiled ]"
