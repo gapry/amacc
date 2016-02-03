@@ -1,5 +1,5 @@
 CROSS_COMPILER_PREFIX =
-CFLAGS = -Os -Wall
+CFLAGS = -Os -Wall -fsigned-char -g
 LIBS = -ldl
 
 BIN = amacc
@@ -13,7 +13,7 @@ endif
 all: $(BIN)
 
 amacc: amacc.c
-	$(CROSS_COMPILER_PREFIX)-gcc $(CFLAGS) -fsigned-char -o amacc amacc.c -g $(LIBS)
+	$(CROSS_COMPILER_PREFIX)-gcc $(CFLAGS) -o amacc amacc.c $(LIBS)
 
 check: $(BIN)
 	@echo "[ compiled ]"
