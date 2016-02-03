@@ -1,7 +1,7 @@
 CROSS_COMPILER_PREFIX =
 CFLAGS = -Os -Wall -fsigned-char -g
 LIBS = -ldl
-
+QEMU_PLATFORM_ARM = qemu-arm
 BIN = amacc
 
 ifeq ($(PREFIX), arm-linux-gnueabihf-)
@@ -17,9 +17,9 @@ amacc: amacc.c
 
 check: $(BIN)
 	@echo "[ compiled ]"
-	@qemu-arm -L /usr/arm-linux-gnueabihf ./amacc hello.c
+	@$(QEMU_PLATFORM_ARM) -L /usr/$(CROSS_COMPILER_PREFIX) ./$(BIN) hello.c
 	@echo "[ nested ]"
-	@qemu-arm -L /usr/arm-linux-gnueabihf ./amacc amacc.c hello.c
+	@$(QEMU_PLATFORM_ARM) -L /usr/$(CROSS_COMPILER_PREFIX) ./$(BIN) amacc.c hello.c
 	@cloc --quiet amacc.c 2>/dev/null
 
 clean:
