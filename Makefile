@@ -11,6 +11,8 @@ else
 	CROSS_COMPILE = arm-linux-gnueabi
 endif
 
+CROSS_EXEC = $(QEMU_PLATFORM_ARM) -L /usr/$(CROSS_COMPILE)
+
 all: $(BIN)
 
 amacc: amacc.c
@@ -18,9 +20,9 @@ amacc: amacc.c
 
 check: $(BIN)
 	@echo "[ compiled ]"
-	@$(QEMU_PLATFORM_ARM) -L /usr/$(CROSS_COMPILE) ./$(BIN) hello.c
+	@$(CROSS_EXEC) ./$(BIN) hello.c
 	@echo "[ nested ]"
-	@$(QEMU_PLATFORM_ARM) -L /usr/$(CROSS_COMPILE) ./$(BIN) $(SRC) hello.c
+	@$(CROSS_EXEC) ./$(BIN) $(SRC) hello.c
 	@cloc --quiet $(SRC) 2>/dev/null
 
 clean:
