@@ -14,10 +14,10 @@ ARM_EXEC = qemu-arm -L /usr/$(shell echo $(CROSS_COMPILE) | sed s'/.$$//')
 all: $(BIN)
 
 amacc: amacc.c
-	$(CROSS_COMPILE)gcc $(CFLAGS) -o amacc amacc.c $(LIBS)
+	$(CROSS_COMPILE)gcc $(CFLAGS) -o $(BIN) amacc.c $(LIBS)
 
 check:
-	@$(ARM_EXEC) ./amacc tests/jit.c
+	@$(ARM_EXEC) ./$(BIN) tests/jit.c
 	@/bin/echo -e "[=== test JIT ===] $(PASS_COLOR)$<PASS$(NO_COLOR)"
 
 clean:
