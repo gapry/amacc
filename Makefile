@@ -15,17 +15,9 @@ all: $(BIN)
 amacc: amacc.c
 	$(CROSS_COMPILE)gcc $(CFLAGS) -fsigned-char -o amacc amacc.c -g -ldl
 
-check: $(BIN) $(TEST_OBJ)
-	@echo "[ compiled ]"
-	@$(ARM_EXEC) ./amacc tests/hello.c
-	@echo "[ nested ]"
-	@$(ARM_EXEC) ./amacc amacc.c tests/hello.c
-	@cloc --quiet amacc.c 2>/dev/null
-
-$(TEST_DIR)/%.o: $(TEST_DIR)/%.c $(BIN)
-	@echo "[********* test  $<******* ]"
-	@$(ARM_EXEC) ./amacc $< 2
-	@/bin/echo -e "$(PASS_COLOR)$< pass$(NO_COLOR)\n"
+check:
+	@$(ARM_EXEC) ./amacc tests/jit.c
+	@/bin/echo -e "[=== test JIT ===] $(PASS_COLOR)$<PASS$(NO_COLOR)"
 
 clean:
 	$(RM) $(BIN)
