@@ -1,5 +1,6 @@
 CROSS_COMPILE ?= arm-linux-gnueabihf-
 CFLAGS = -Os -Wall -fsigned-char -g
+LIBS = -ldl
 TEST_DIR = ./tests
 TEST_SRC = $(wildcard $(TEST_DIR)/*.c)
 TEST_OBJ = $(TEST_SRC:.c=.o)
@@ -13,7 +14,7 @@ ARM_EXEC = qemu-arm -L /usr/$(shell echo $(CROSS_COMPILE) | sed s'/.$$//')
 all: $(BIN)
 
 amacc: amacc.c
-	$(CROSS_COMPILE)gcc $(CFLAGS) -o amacc amacc.c -ldl
+	$(CROSS_COMPILE)gcc $(CFLAGS) -o amacc amacc.c $(LIBS)
 
 check:
 	@$(ARM_EXEC) ./amacc tests/jit.c
