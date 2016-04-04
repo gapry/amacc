@@ -42,3 +42,6 @@ $(TEST_DIR)/%.o: $(TEST_DIR)/%.c $(BIN) $(OBJ_DIR)/amacc
 clean:
 	$(RM) $(BIN) $(OBJ_DIR)/* \
               out-1 out-2
+
+format:
+	@astyle --style=kr --indent=spaces=4 --indent-switches --suffix=none *.[ch]
